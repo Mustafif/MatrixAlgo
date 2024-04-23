@@ -12,7 +12,7 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
         .link_libc = true,
     });
-    exe.addCSourceFiles(.{ .root = b.path("src"), .files = &.{ "main.c", "matrix.c" }, .flags = &.{ "-Wall", "-Werror", "-Wno-unused-parameter", "-Wno-unused-variable", "-Wno-unused-function", "-Wno-unused-value", "-Wno-unused-label", "-Wno-unused-but-set-variable", "-Wno-unused-const-variable", "-Wno-unused-local-typedefs", "-Wno-unused-macros" } });
+    exe.addCSourceFiles(.{ .root = b.path("src"), .files = &.{ "main.c", "matrix.c" }, .flags = &.{ "-Wall", "-ffast-math", "-O3", "-Werror", "-Wno-unused-parameter", "-Wno-unused-variable", "-Wno-unused-function", "-Wno-unused-value", "-Wno-unused-label", "-Wno-unused-but-set-variable", "-Wno-unused-const-variable", "-Wno-unused-local-typedefs", "-Wno-unused-macros" } });
     exe.linkSystemLibrary("m");
     exe.addIncludePath(b.path("includes"));
 
