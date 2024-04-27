@@ -33,7 +33,8 @@ double *__M1_getCol(Matrix1 matrix, int col);
 // Add two matrices
 Matrix1 __M1_add(Matrix1 matrix1, Matrix1 matrix2);
 // Knowing how to add, you can do all the rest of the operations...
-
+// Multiply two matrices
+Matrix1 __M1_mul(Matrix1 matrix1, Matrix1 matrix2);
 
 // Transpose a matrix
 Matrix1 __M1_transpose(Matrix1 matrix);
