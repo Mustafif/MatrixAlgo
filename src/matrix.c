@@ -110,6 +110,12 @@ Matrix1 __M1_add(Matrix1 const A, Matrix1 const B)
     return result;
 }
 
+// Matrix1 __M1_sub(Matrix1 const A, Matrix1 const B) {}
+
+// Matrix1 __M1_mulScalar(Matrix1 matrix, double scalar) {}
+
+// Matrix1 __M1_mmul(Matrix1 const A, Matrix1 const B) {}
+
 Matrix1 __M1_transpose(Matrix1 matrix)
 {
     Matrix1 result = __M1_new(matrix.cols, matrix.rows);
@@ -122,3 +128,73 @@ Matrix1 __M1_transpose(Matrix1 matrix)
     }
     return result;
 }
+
+// double __M1_determinant(Matrix1 matrix) {}
+
+// Matrix1 __M1_inverse(Matrix1 matrix) {}
+
+// int __M1_rank(Matrix1 matrix) {}
+
+// double __M1_trace(Matrix1 matrix) {}
+
+// double *__M1_eigenvalues(Matrix1 matrix) {}
+
+// Matrix1 __M1_eigenvectors(Matrix1 matrix) {}
+
+// Matrix1 *__M1_LU(Matrix1 matrix) {}
+
+// Matrix1 __M1_rref(Matrix1 matrix) {}
+
+// double *__M1_solve(Matrix1 matrix, double *b) {}
+
+//////////////////////////////////////////////////////////////////////
+///////////////////////// Matrix 2 ///////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+
+// Matrix2 __M2_new(int rows, int cols) {}
+
+// Matrix2 __M2_free(Matrix2 *matrix) {}
+
+// void __M2_print(Matrix2 matrix) {}
+
+// Matrix2 __M2_identity(int n) {}
+
+// Matrix2 __M2_setRow(Matrix2 matrix, int row, double *values) {}
+
+// Matrix2 __M2_setCol(Matrix2 matrix, int col, double *values) {}
+
+// Matrix2 __M2_set(Matrix2 matrix, int row, int col, double value) {}
+
+// double __M2_get(Matrix2 matrix, int row, int col) {}
+
+// double *__M2_getRow(Matrix2 matrix, int row) {}
+
+// double *__M2_getCol(Matrix2 matrix, int col) {}
+
+// Matrix2 __M2_add(Matrix2 const A, Matrix2 const B) {}
+
+// Matrix2 __M2_sub(Matrix2 const A, Matrix2 const B) {}
+
+// Matrix2 __M2_mulScalar(Matrix2 matrix, double scalar) {}
+
+// Matrix2 __M2_mmul(Matrix2 const A, Matrix2 const B) {}
+
+// Matrix2 __M2_transpose(Matrix2 matrix) {}
+
+// double __M2_determinant(Matrix2 matrix) {}
+
+// Matrix2 __M2_inverse(Matrix2 matrix) {}
+
+// int __M2_rank(Matrix2 matrix) {}
+
+// double __M2_trace(Matrix2 matrix) {}
+
+// double *__M2_eigenvalues(Matrix2 matrix) {}
+
+// Matrix2 __M2_eigenvectors(Matrix2 matrix) {}
+
+// Matrix2 *__M2_LU(Matrix2 matrix) {}
+
+// Matrix2 __M2_rref(Matrix2 matrix) {}
+
+// double *__M2_solve(Matrix2 matrix, double *b) {}

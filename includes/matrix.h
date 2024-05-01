@@ -31,13 +31,13 @@ double *__M1_getRow(Matrix1 matrix, int row);
 double *__M1_getCol(Matrix1 matrix, int col);
 
 // Add two matrices
-Matrix1 __M1_add(Matrix1 matrix1, Matrix1 matrix2);
+Matrix1 __M1_add(Matrix1 const A, Matrix1 const B);
 // Subtract two matrices
-Matrix1 __M1_sub(Matrix1 matrix1, Matrix1 matrix2);
+Matrix1 __M1_sub(Matrix1 const A, Matrix1 const B);
 // Multiply a matrix by a scalar
 Matrix1 __M1_mulScalar(Matrix1 matrix, double scalar);
 // Multiply two matrices
-Matrix1 __M1_mmul(Matrix1 matrix1, Matrix1 matrix2);
+Matrix1 __M1_mmul(Matrix1 const A, Matrix1 const B);
 
 // Transpose a matrix
 Matrix1 __M1_transpose(Matrix1 matrix);
@@ -54,12 +54,11 @@ double *__M1_eigenvalues(Matrix1 matrix);
 // Calculate the eigenvectors of the matrix
 Matrix1 __M1_eigenvectors(Matrix1 matrix);
 // Calculate the LU decomposition of the matrix
-Matrix1 *__M1_luDecomposition(Matrix1 matrix);
+Matrix1 *__M1_LU(Matrix1 matrix);
 // Calculate the RREF of the matrix
 Matrix1 __M1_rref(Matrix1 matrix);
 // Solve the system of linear equations
 double *__M1_solve(Matrix1 matrix, double *b);
-
 
 
 //> Matrix2 represents an alternative way to represent a matrix
@@ -121,7 +120,7 @@ double *__M2_eigenvalues(Matrix2 matrix);
 // Calculate the eigenvectors of the matrix
 Matrix2 __M2_eigenvectors(Matrix2 matrix);
 // Calculate the LU decomposition of the matrix
-Matrix2 *__M2_luDecomposition(Matrix2 matrix);
+Matrix2 *__M2_LU(Matrix2 matrix);
 // Calculate the RREF of the matrix
 Matrix2 __M2_rref(Matrix2 matrix);
 // Solve the system of linear equations
