@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//yoooo
+// yoooo
 
 Matrix1 __M1_new(int rows, int cols)
 {
@@ -12,7 +12,7 @@ Matrix1 __M1_new(int rows, int cols)
     matrix.data = (double **)malloc(rows * sizeof(double *));
     for (int i = 0; i < rows; i++)
     {
-        matrix.data[i] = (double *)malloc(cols * sizeof(double));
+        matrix.data[i] = (double *)calloc(cols, sizeof(double));
     }
     return matrix;
 }
