@@ -9,10 +9,10 @@ Matrix1 __M1_new(int rows, int cols)
     Matrix1 matrix;
     matrix.rows = rows;
     matrix.cols = cols;
-    matrix.data = (double **)malloc(rows * sizeof(double *));
+    matrix.data = (TYPE **)malloc(rows * sizeof(TYPE *));
     for (int i = 0; i < rows; i++)
     {
-        matrix.data[i] = (double *)calloc(cols, sizeof(double));
+        matrix.data[i] = (TYPE *)calloc(cols, sizeof(TYPE));
     }
     return matrix;
 }
@@ -48,7 +48,7 @@ Matrix1 __M1_identity(int n)
     return matrix;
 }
 
-Matrix1 __M1_setRow(Matrix1 matrix, int row, double *values)
+Matrix1 __M1_setRow(Matrix1 matrix, int row, TYPE *values)
 {
     for (int i = 0; i < matrix.cols; i++)
     {
@@ -57,7 +57,7 @@ Matrix1 __M1_setRow(Matrix1 matrix, int row, double *values)
     return matrix;
 }
 
-Matrix1 __M1_setCol(Matrix1 matrix, int col, double *values)
+Matrix1 __M1_setCol(Matrix1 matrix, int col, TYPE *values)
 {
     for (int i = 0; i < matrix.rows; i++)
     {
@@ -66,25 +66,25 @@ Matrix1 __M1_setCol(Matrix1 matrix, int col, double *values)
     return matrix;
 }
 
-Matrix1 __M1_set(Matrix1 matrix, int row, int col, double value)
+Matrix1 __M1_set(Matrix1 matrix, int row, int col, TYPE value)
 {
     matrix.data[row][col] = value;
     return matrix;
 }
 
-double __M1_get(Matrix1 matrix, int row, int col)
+TYPE __M1_get(Matrix1 matrix, int row, int col)
 {
     return matrix.data[row][col];
 }
 
-double *__M1_getRow(Matrix1 matrix, int row)
+TYPE *__M1_getRow(Matrix1 matrix, int row)
 {
     return matrix.data[row];
 }
 
-double *__M1_getCol(Matrix1 matrix, int col)
+TYPE *__M1_getCol(Matrix1 matrix, int col)
 {
-    double *values = (double *)malloc(matrix.rows * sizeof(double));
+    TYPE *values = (TYPE *)malloc(matrix.rows * sizeof(TYPE));
     for (int i = 0; i < matrix.rows; i++)
     {
         values[i] = matrix.data[i][col];
@@ -112,7 +112,7 @@ Matrix1 __M1_add(Matrix1 const A, Matrix1 const B)
 
 // Matrix1 __M1_sub(Matrix1 const A, Matrix1 const B) {}
 
-// Matrix1 __M1_mulScalar(Matrix1 matrix, double scalar) {}
+// Matrix1 __M1_mulScalar(Matrix1 matrix, TYPE scalar) {}
 
 // Matrix1 __M1_mmul(Matrix1 const A, Matrix1 const B) {}
 
@@ -129,15 +129,15 @@ Matrix1 __M1_transpose(Matrix1 matrix)
     return result;
 }
 
-// double __M1_determinant(Matrix1 matrix) {}
+// TYPE __M1_determinant(Matrix1 matrix) {}
 
 // Matrix1 __M1_inverse(Matrix1 matrix) {}
 
 // int __M1_rank(Matrix1 matrix) {}
 
-// double __M1_trace(Matrix1 matrix) {}
+// TYPE __M1_trace(Matrix1 matrix) {}
 
-// double *__M1_eigenvalues(Matrix1 matrix) {}
+// TYPE *__M1_eigenvalues(Matrix1 matrix) {}
 
 // Matrix1 __M1_eigenvectors(Matrix1 matrix) {}
 
@@ -145,7 +145,7 @@ Matrix1 __M1_transpose(Matrix1 matrix)
 
 // Matrix1 __M1_rref(Matrix1 matrix) {}
 
-// double *__M1_solve(Matrix1 matrix, double *b) {}
+// TYPE *__M1_solve(Matrix1 matrix, TYPE *b) {}
 
 //////////////////////////////////////////////////////////////////////
 ///////////////////////// Matrix 2 ///////////////////////////////////
@@ -159,37 +159,37 @@ Matrix1 __M1_transpose(Matrix1 matrix)
 
 // Matrix2 __M2_identity(int n) {}
 
-// Matrix2 __M2_setRow(Matrix2 matrix, int row, double *values) {}
+// Matrix2 __M2_setRow(Matrix2 matrix, int row, TYPE *values) {}
 
-// Matrix2 __M2_setCol(Matrix2 matrix, int col, double *values) {}
+// Matrix2 __M2_setCol(Matrix2 matrix, int col, TYPE *values) {}
 
-// Matrix2 __M2_set(Matrix2 matrix, int row, int col, double value) {}
+// Matrix2 __M2_set(Matrix2 matrix, int row, int col, TYPE value) {}
 
-// double __M2_get(Matrix2 matrix, int row, int col) {}
+// TYPE __M2_get(Matrix2 matrix, int row, int col) {}
 
-// double *__M2_getRow(Matrix2 matrix, int row) {}
+// TYPE *__M2_getRow(Matrix2 matrix, int row) {}
 
-// double *__M2_getCol(Matrix2 matrix, int col) {}
+// TYPE *__M2_getCol(Matrix2 matrix, int col) {}
 
 // Matrix2 __M2_add(Matrix2 const A, Matrix2 const B) {}
 
 // Matrix2 __M2_sub(Matrix2 const A, Matrix2 const B) {}
 
-// Matrix2 __M2_mulScalar(Matrix2 matrix, double scalar) {}
+// Matrix2 __M2_mulScalar(Matrix2 matrix, TYPE scalar) {}
 
 // Matrix2 __M2_mmul(Matrix2 const A, Matrix2 const B) {}
 
 // Matrix2 __M2_transpose(Matrix2 matrix) {}
 
-// double __M2_determinant(Matrix2 matrix) {}
+// TYPE __M2_determinant(Matrix2 matrix) {}
 
 // Matrix2 __M2_inverse(Matrix2 matrix) {}
 
 // int __M2_rank(Matrix2 matrix) {}
 
-// double __M2_trace(Matrix2 matrix) {}
+// TYPE __M2_trace(Matrix2 matrix) {}
 
-// double *__M2_eigenvalues(Matrix2 matrix) {}
+// TYPE *__M2_eigenvalues(Matrix2 matrix) {}
 
 // Matrix2 __M2_eigenvectors(Matrix2 matrix) {}
 
@@ -197,4 +197,4 @@ Matrix1 __M1_transpose(Matrix1 matrix)
 
 // Matrix2 __M2_rref(Matrix2 matrix) {}
 
-// double *__M2_solve(Matrix2 matrix, double *b) {}
+// TYPE *__M2_solve(Matrix2 matrix, TYPE *b) {}
