@@ -32,18 +32,31 @@ double *__M1_getCol(Matrix1 matrix, int col);
 
 // Add two matrices
 Matrix1 __M1_add(Matrix1 matrix1, Matrix1 matrix2);
-// Knowing how to add, you can do all the rest of the operations...
+// Subtract two matrices
+Matrix1 __M1_sub(Matrix1 matrix1, Matrix1 matrix2);
+// Multiply a matrix by a scalar
+Matrix1 __M1_mulScalar(Matrix1 matrix, double scalar);
 // Multiply two matrices
-Matrix1 __M1_mul(Matrix1 matrix1, Matrix1 matrix2);
+Matrix1 __M1_mmul(Matrix1 matrix1, Matrix1 matrix2);
 
 // Transpose a matrix
 Matrix1 __M1_transpose(Matrix1 matrix);
-// Inverse the matrix
-Matrix1 __M1_inverse(Matrix1 matrix);
 // Calculate the determinant of the matrix
 double __M1_determinant(Matrix1 matrix);
+// Inverse the matrix
+Matrix1 __M1_inverse(Matrix1 matrix);
 // Calculate the rank of the matrix
 int __M1_rank(Matrix1 matrix);
+// Calculate the trace of the matrix
+double __M1_trace(Matrix1 matrix);
+// Calculate the eigenvalues of the matrix
+double *__M1_eigenvalues(Matrix1 matrix);
+// Calculate the eigenvectors of the matrix
+Matrix1 __M1_eigenvectors(Matrix1 matrix);
+// Calculate the LU decomposition of the matrix
+Matrix1 *__M1_luDecomposition(Matrix1 matrix);
+// Calculate the RREF of the matrix
+Matrix1 __M1_rref(Matrix1 matrix);
 // Solve the system of linear equations
 double *__M1_solve(Matrix1 matrix, double *b);
 
@@ -61,5 +74,55 @@ typedef struct
     double *data;
 } Matrix2;
 
-Matrix2 create_matrix2(int rows, int cols);
-void free_matrix2(Matrix2 *matrix);
+// Create a new matrix with the specified number of rows and columns
+Matrix2 __M2_new(int rows, int cols);
+// Free the memory allocated for the matrix
+void __M2_free(Matrix2 *matrix);
+// Print the matrix to the console
+void __M2_print(Matrix2 matrix);
+// Create an identity matrix of the specified size
+Matrix2 __M2_identity(int n);
+
+// Sets the row at the specified index to the given values
+Matrix2 __M2_setRow(Matrix2 matrix, int row, double *values);
+// Sets the column at the specified index to the given values
+Matrix2 __M2_setCol(Matrix2 matrix, int col, double *values);
+// Sets the value at the specified row and column to the given value
+Matrix2 __M2_set(Matrix2 matrix, int row, int col, double value);
+
+// Returns the value at the specified row and column
+double __M2_get(Matrix2 matrix, int row, int col);
+// Returns the row at the specified index
+double *__M2_getRow(Matrix2 matrix, int row);
+// Returns the column at the specified index
+double *__M2_getCol(Matrix2 matrix, int col);
+
+// Add two matrices
+Matrix2 __M2_add(Matrix2 matrix1, Matrix2 matrix2);
+// Subtract two matrices
+Matrix2 __M2_sub(Matrix2 matrix1, Matrix2 matrix2);
+// Multiply a matrix by a scalar
+Matrix2 __M2_mulScalar(Matrix2 matrix, double scalar);
+// Multiply two matrices
+Matrix2 __M2_mmul(Matrix2 matrix1, Matrix2 matrix2);
+
+// Transpose a matrix
+Matrix2 __M2_transpose(Matrix2 matrix);
+// Calculate the determinant of the matrix
+double __M2_determinant(Matrix2 matrix);
+// Inverse the matrix
+Matrix2 __M2_inverse(Matrix2 matrix);
+// Calculate the rank of the matrix
+int __M2_rank(Matrix2 matrix);
+// Calculate the trace of the matrix
+double __M2_trace(Matrix2 matrix);
+// Calculate the eigenvalues of the matrix
+double *__M2_eigenvalues(Matrix2 matrix);
+// Calculate the eigenvectors of the matrix
+Matrix2 __M2_eigenvectors(Matrix2 matrix);
+// Calculate the LU decomposition of the matrix
+Matrix2 *__M2_luDecomposition(Matrix2 matrix);
+// Calculate the RREF of the matrix
+Matrix2 __M2_rref(Matrix2 matrix);
+// Solve the system of linear equations
+double *__M2_solve(Matrix2 matrix, double *b);
