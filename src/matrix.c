@@ -143,6 +143,24 @@ Matrix1 __M1_transpose(Matrix1 matrix)
 
 // Matrix1 *__M1_LU(Matrix1 matrix) {}
 
+static void __M1_partialPivot(Matrix1 matrix, int row, int col)
+{
+    int maxRow = row;
+    for (int i = row + 1; i < matrix.rows; i++)
+    {
+        if (matrix.data[i][col] > matrix.data[maxRow][col])
+        {
+            maxRow = i;
+        }
+    }
+    if (maxRow != row)
+    {
+        T *temp = matrix.data[row];
+        matrix.data[row] = matrix.data[maxRow];
+        matrix.data[maxRow] = temp;
+    }
+}
+
 // Matrix1 __M1_rref(Matrix1 matrix) {}
 
 // T *__M1_solve(Matrix1 matrix, T *b) {}
@@ -194,6 +212,24 @@ Matrix1 __M1_transpose(Matrix1 matrix)
 // Matrix2 __M2_eigenvectors(Matrix2 matrix) {}
 
 // Matrix2 *__M2_LU(Matrix2 matrix) {}
+
+static void __M2_partialPivot(Matrix2 matrix, int row, int col)
+{
+    int maxRow = row;
+    for (int i = row + 1; i < matrix.rows; i++)
+    {
+        if ((matrix.data[i] + col) > (matrix.data[maxRow] + col))
+        {
+            maxRow = i;
+        }
+    }
+    if (maxRow != row)
+    {
+        double temp = matrix.data[row];
+        matrix.data[row] = matrix.data[maxRow];
+        matrix.data[maxRow] = temp;
+    }
+}
 
 // Matrix2 __M2_rref(Matrix2 matrix) {}
 
