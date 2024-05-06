@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// yoooo
 
 Matrix1 __M1_new(int rows, int cols)
 {
@@ -110,9 +109,32 @@ Matrix1 __M1_add(Matrix1 const A, Matrix1 const B)
     return result;
 }
 
-// Matrix1 __M1_sub(Matrix1 const A, Matrix1 const B) {}
+Matrix1 __M1_sub(Matrix1 const A, Matrix1 const B) 
+{
+    Matrix1 result = __M1_new(A.rows, A.cols);
+    for (int i = 0; i < A.rows; i++)
+    {
+        for (int j = 0; j < A.cols; j++)
+        {
+            result.data[i][j] = A.data[i][j] - B.data[i][j];
+        }
+    }
+    return result;
+}
 
-// Matrix1 __M1_mulScalar(Matrix1 matrix, T scalar) {}
+Matrix1 __M1_mulScalar(Matrix1 matrix, T scalar) 
+{
+    Matrix1 result = __M1_new(matrix.rows, matrix.cols);
+    for (int i = 0; i < matrix.rows; i++)
+    {
+        for (int j = 0; j < matrix.cols; j++)
+        {
+            result.data[i][j] = scalar * matrix.data[i][j];
+        }
+    }
+    return result;
+}
+
 
 // Matrix1 __M1_mmul(Matrix1 const A, Matrix1 const B) {}
 
@@ -123,7 +145,7 @@ Matrix1 __M1_transpose(Matrix1 matrix)
     {
         for (int j = 0; j < matrix.cols; j++)
         {
-            result.data[j][i] = matrix.data[i][j];
+            result.data[i][j] = matrix.data[i][j];
         }
     }
     return result;
