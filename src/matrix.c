@@ -197,7 +197,15 @@ Matrix1 __M1_transpose(Matrix1 matrix)
 
 // int __M1_rank(Matrix1 matrix) {}
 
-// T __M1_trace(Matrix1 matrix) {}
+T __M1_trace(Matrix1 matrix) 
+{
+    T result;
+    for (int i = 0; i < matrix.cols; i++) 
+    {
+        result = result + matrix.data[i][i];
+    }
+    return result;
+}
 
 // T *__M1_eigenvalues(Matrix1 matrix) {}
 
