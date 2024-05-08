@@ -22,6 +22,7 @@ int main()
     //testing multiply by scalar and subtraction functions
     Matrix1 matrix_3 = __M1_transpose(matrix_2);
     Matrix1 matrix_4 = __M1_mmul(matrix, matrix_2);
+    T mytrace = __M1_trace(matrix);
 
     //output matrices
     printf("Matrix:\n");
@@ -32,7 +33,8 @@ int main()
     __M1_print(matrix_3);
     printf("matrix_4:\n");
     __M1_print(matrix_4);
-
+    printf("%f", mytrace);
+    
     //deallocate memory
     __M1_free(&matrix);
     __M1_free(&matrix_2);
