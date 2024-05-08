@@ -137,8 +137,12 @@ Matrix1 __M1_mulScalar(Matrix1 matrix, T scalar)
     return result;
 }
 
-
-Matrix1 __M1_mmul(Matrix1 const A, Matrix1 const B) 
+// Currently assumes the matrices is square which in practice
+// won't always be true, instead we could follow the dimension compatability:
+// Matrix A has dimensions m x n
+// Matrix B has dimensions n x p
+// A.cols == B.rows and C is m x p or A.rows x B.cols
+Matrix1 __M1_mmul(Matrix1 const A, Matrix1 const B)
 {
     Matrix1 result = __M1_new(A.rows, A.cols);
     for (int i = 0; i < A.rows; i++)
@@ -155,6 +159,24 @@ Matrix1 __M1_mmul(Matrix1 const A, Matrix1 const B)
     }
     return result;
 }
+
+// Alternate version which checks dimensions and if they aren't
+// compatible, you exit the program and print the error to stderr.
+// This method also uses a more optimized for loop.
+
+//Matrix1 __M1_mmul(Matrix1 const A, Matrix1 const B)
+//{
+//    if(A.cols != B.rows) {
+//        fprintf(stderr, "Invalid dimensions");
+//        exit(1);
+//    }
+//    Matrix1 C = __M1_new(A.rows, B.cols);
+//    for(int row = 0; row < A.rows; row++)
+//        for(int col = 0; col < B.cols; col++)
+//            for(int idx = 0; idx < A.cols; idx++)
+//                C.data[row][col] += A.data[row][idx] * B.data[idx][col];
+//    return C;
+//}
 
 Matrix1 __M1_transpose(Matrix1 matrix)
 {
