@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//we assume square matrices throughout this program. 
+//assume dimensions always agree
 
 Matrix1 __M1_new(int rows, int cols)
 {
@@ -136,7 +138,23 @@ Matrix1 __M1_mulScalar(Matrix1 matrix, T scalar)
 }
 
 
-// Matrix1 __M1_mmul(Matrix1 const A, Matrix1 const B) {}
+Matrix1 __M1_mmul(Matrix1 const A, Matrix1 const B) 
+{
+    Matrix1 result = __M1_new(A.rows, A.cols);
+    for (int i = 0; i < A.rows; i++)
+    {
+        for (int j = 0; j < A.cols; j++)
+        {
+            float nums = 0;
+            for (int k = 0; k < A.cols; k++)
+            {
+                nums = nums + A.data[i][k]*B.data[k][j];
+            }
+        result.data[i][j] = nums;
+        }
+    }
+    return result;
+}
 
 Matrix1 __M1_transpose(Matrix1 matrix)
 {
