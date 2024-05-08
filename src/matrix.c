@@ -163,7 +163,7 @@ Matrix1 __M1_transpose(Matrix1 matrix)
     {
         for (int j = 0; j < matrix.cols; j++)
         {
-            result.data[i][j] = matrix.data[i][j];
+            result.data[i][j] = matrix.data[j][i];
         }
     }
     return result;

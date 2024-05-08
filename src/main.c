@@ -20,7 +20,7 @@ int main()
 
 
     //testing multiply by scalar and subtraction functions
-    Matrix1 matrix_3 = __M1_mulScalar(__M1_sub(matrix_2, matrix), 3.14);
+    Matrix1 matrix_3 = __M1_transpose(matrix_2);
     Matrix1 matrix_4 = __M1_mmul(matrix, matrix_2);
 
     //output matrices
