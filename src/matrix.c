@@ -1,6 +1,7 @@
 #include "../includes/matrix.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <emmintrin.h>
 
 //we assume square matrices throughout this program. 
 //assume dimensions always agree
@@ -95,25 +96,28 @@ T *__M1_getCol(Matrix1 matrix, int col)
 
 // Improvements that can be made:
 // - Parallelize the addition operation
-// - Use SIMD instructions to speed up the addition operation
-// - Check if the matrices have the same dimensions
+// - Use SIMD Operations to speed up the addition operation
 // - Unroll the loops to reduce the loop overhead
-Matrix1 __M1_add(Matrix1 const A, Matrix1 const B)
-{
-    if (A.rows != B.rows || A.cols != B.cols) {
-        fprintf(stderr, "Invalid Dimensions");
-        exit(1);
-    }
-    Matrix1 result = __M1_new(A.rows, A.cols);
-    for (int i = 0; i < A.rows; i++)
-    {
-        for (int j = 0; j < A.cols; j++)
-        {
-            result.data[i][j] = A.data[i][j] + B.data[i][j];
-        }
-    }
-    return result;
-}
+//Matrix1 __M1_add(Matrix1 const A, Matrix1 const B)
+//{
+//    if (A.rows != B.rows || A.cols != B.cols) {
+//        fprintf(stderr, "Invalid Dimensions");
+//        exit(1);
+//    }
+//    Matrix1 result = __M1_new(A.rows, A.cols);
+//    if (A.cols < A.rows) {
+//        //SIMD operation on column vectors
+//    }
+//    //SIMD operation on row vectors
+//    for (int i = 0; i < A.rows; i++)
+//    {
+//        for (int j = 0; j < A.cols; j++)
+//        {
+//            result.data[i][j] = A.data[i][j] + B.data[i][j];
+//        }
+//    }
+//    return result;
+//}
 
 Matrix1 __M1_sub(Matrix1 const A, Matrix1 const B) 
 {
@@ -172,7 +176,75 @@ Matrix1 __M1_transpose(Matrix1 matrix)
     return result;
 }
 
-// T __M1_determinant(Matrix1 matrix) {}
+//recursive approach
+//T __M1_determinant(Matrix1 matrix) 
+//{
+//    T result;
+//    if (matrix.rows != matrix.cols) {
+//        fprintf(stderr, "Matrix must be square")
+//        exit(1);
+//    }
+
+//    //find determinant
+//    if (matrix.rows = 1) {
+//        result = __M1_get(matrix, 0, 0);
+//        return result;
+//    }
+//    elif (__M1_isDiagonal(matrix) || 
+//        __M1_isTriangular(matrix))  
+//    {
+//        for (int d = 0; d < matrix.cols; d++) {
+//            result = result * matrix.data[i][i];
+//        }
+//        return result;
+//    }
+//    elif (//matrix has LU factorization
+//    false) {//call *__M1_LU. determinant of product is product of determinants}
+//    for (int col = 0; col < matrix.cols; col++) {
+//    }
+//} 
+
+int __M1_isDiagonal(Matrix1 matrix) {
+    if (matrix.rows != matrix.cols) {
+        return 0;
+    }
+    for (int i = 0; i < matrix.rows; i++) {
+        for (int j = 0; j < matrix.cols; j++) {
+            if (i != j) {
+                if (matrix.data[i][j] != 0) {
+                    return 0;
+                }
+            }
+        }
+    }
+    return 1;
+}
+
+//int __M1_isTriangular(Matrix1 matrix) {}
+
+
+
+//still trying to figure this out ) :
+void __M1_delRow(Matrix1 *matrix, int row) 
+{
+    if (row >= matrix->rows || row < 0) {
+        fprintf(stderr, "Row index is out of bounds");
+        exit(1);
+    }
+
+    
+    for(int i = row + 1; i < matrix->rows; i++) {
+        matrix->data[i-1] = matrix->data[i];
+    }
+
+    //update number of rows
+    matrix->rows--;
+
+    //deallocate memory
+    free(matrix->data[row]);
+}
+
+// Matrix1 __M1_delCol(Matrix1 matrix, int col) {}
 
 // Matrix1 __M1_inverse(Matrix1 matrix) {}
 

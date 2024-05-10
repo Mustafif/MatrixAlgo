@@ -45,6 +45,14 @@ Matrix1 __M1_mmul(Matrix1 const A, Matrix1 const B);
 Matrix1 __M1_transpose(Matrix1 matrix);
 // Calculate the determinant of the matrix
 T __M1_determinant(Matrix1 matrix);
+// determine if matrix is diagonal
+int __M1_isDiagonal(Matrix1 matrix);
+// determine if matrix is triangular
+int __M1_isTriangular(Matrix1 matrix);
+// Delete a row of the matrix
+void __M1_delRow(Matrix1 *matrix, int row);
+// Delete a column of the matrix
+void __M1_delCol(Matrix1 *matrix, int col);
 // Inverse the matrix
 Matrix1 __M1_inverse(Matrix1 matrix);
 // Calculate the rank of the matrix
