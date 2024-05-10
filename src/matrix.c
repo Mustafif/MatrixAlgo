@@ -1,4 +1,4 @@
-#include <matrix.h>
+#include "../includes/matrix.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <emmintrin.h>
@@ -252,7 +252,7 @@ void __M1_delRow(Matrix1 *matrix, int row)
 
 T __M1_trace(Matrix1 matrix) 
 {
-    T result;
+    T result = (T)0;
     for (int i = 0; i < matrix.cols; i++) 
     {
         result = result + matrix.data[i][i];

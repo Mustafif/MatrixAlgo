@@ -33,4 +33,24 @@ for anyone who wants to use it.
 - [LU Decomposition](https://en.wikipedia.org/wiki/LU_decomposition)
 
 > When computing RREF, to keep numerical stability we will need to use the method of 
-> partial pivoting. 
+> partial pivoting.
+
+### MMUL Bench
+
+In `bench.c` we created a benchmark file that will do matrix multipliciation between a 1000 x 1000 matrix, we get the following results:
+
+```bash
+# no flags
+$ gcc bench.c src/matrix.c -o bench
+$ ./bench
+Time taken by mmul1: 4.488451 seconds
+Time taken by mmul2: 2.904525 seconds
+# with flags
+$ gcc bench.c src/matrix.c -o bench -Wall -ffast-math -O3 -Werror -Wno-unused-parameter -Wno-unused-variable -Wno-unused-function -Wno-unused-value
+$ ./bench
+Time taken by mmul1: 2.093212 seconds
+Time taken by mmul2: 0.701268 seconds
+```
+
+As we can see, the second implementation can perform close to 2x better. Although, it would also be great to check other metrics such as heap usage, and
+cache hitting. 
