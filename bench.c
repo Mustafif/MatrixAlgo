@@ -23,11 +23,40 @@ Matrix1 mmul2(Matrix1 const A, Matrix1 const B) {
       fprintf(stderr, "Invalid dimensions");
       exit(1);
    }
+
+   // Calculate padded sizes
+   int padded_rows = (A.rows + 7) & (~7); // Round up to multiple of 8
+   int padded_cols = (B.cols + 7) & (~7); // Round up to multiple of 8
+
+   // Create padded matrices
+   Matrix1 Apadded = __M1_new(padded_rows, A.cols);
+   Matrix1 Bpadded = __M1_new(B.rows, padded_cols);
+   Matrix1 Cpadded = __M1_new(padded_rows, padded_cols);
+
+   // Copy data to padded matrices
+   for (int i = 0; i < A.rows; i++)
+      for (int j = 0; j < A.cols; j++)
+         Apadded.data[i][j] = A.data[i][j];
+   for (int i = 0; i < B.rows; i++)
+      for (int j = 0; j < B.cols; j++)
+         Bpadded.data[i][j] = B.data[i][j];
+
+   // Perform matrix multiplication on padded matrices
+   int rows_per_block = 8;
+   int cols_per_block = 8;
+   for (int row_block = 0; row_block < padded_rows; row_block += rows_per_block)
+      for (int col_block = 0; col_block < padded_cols; col_block += cols_per_block)
+         for (int row = row_block; row < row_block + rows_per_block; row++)
+            for (int col = col_block; col < col_block + cols_per_block; col++)
+               for (int idx = 0; idx < A.cols; idx++)
+                  Cpadded.data[row][col] += Apadded.data[row][idx] * Bpadded.data[idx][col];
+
+   // Copy result to output matrix
    Matrix1 C = __M1_new(A.rows, B.cols);
-   for (int row = 0; row < A.rows; row++)
-      for (int col = 0; col < B.cols; col++)
-         for (int idx = 0; idx < A.cols; idx++)
-            C.data[row][col] += A.data[row][idx] * B.data[idx][col];
+   for (int i = 0; i < A.rows; i++)
+      for (int j = 0; j < B.cols; j++)
+         C.data[i][j] = Cpadded.data[i][j];
+
    return C;
 }
 
@@ -50,7 +79,7 @@ Matrix1 mmul_blocked(Matrix1 const A, Matrix1 const B) {
 int main() {
    // Define matrix dimensions
    const size_t rows = 1000;
-   const size_t cols = 101;
+   const size_t cols = 100;
 
    // Initialize matrices
    Matrix1 A = __M1_new(rows, cols);
