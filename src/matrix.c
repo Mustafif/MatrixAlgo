@@ -232,16 +232,16 @@ void __M1_delRow(Matrix1 *matrix, int row)
         exit(1);
     }
 
-    
+    // Deallocate memory for the row being deleted
+    free(matrix->data[row]);
+
+    // Shift the remaining rows up by one position
     for(int i = row + 1; i < matrix->rows; i++) {
         matrix->data[i-1] = matrix->data[i];
     }
 
-    //update number of rows
+    // Update number of rows
     matrix->rows--;
-
-    //deallocate memory
-    free(matrix->data[row]);
 }
 
 // Matrix1 __M1_delCol(Matrix1 matrix, int col) {}
@@ -285,7 +285,7 @@ static void __M1_partialPivot(Matrix1 matrix, int row, int col)
 }
 
 // Matrix1 __M1_rref(Matrix1 matrix) {}
-t
+
 // T *__M1_solve(Matrix1 matrix, T *b) {}
 
 //////////////////////////////////////////////////////////////////////
@@ -336,23 +336,23 @@ t
 
 // Matrix2 *__M2_LU(Matrix2 matrix) {}
 
-static void __M2_partialPivot(Matrix2 matrix, int row, int col)
-{
-    int maxRow = row;
-    for (int i = row + 1; i < matrix.rows; i++)
-    {
-        if ((matrix.data[i] + col) > (matrix.data[maxRow] + col))
-        {
-            maxRow = i;
-        }
-    }
-    if (maxRow != row)
-    {
-        double temp = matrix.data[row];
-        matrix.data[row] = matrix.data[maxRow];
-        matrix.data[maxRow] = temp;
-    }
-}
+// static void __M2_partialPivot(Matrix2 matrix, int row, int col)
+// {
+//     int maxRow = row;
+//     for (int i = row + 1; i < matrix.rows; i++)
+//     {
+//         if ((matrix.data[i] + col) > (matrix.data[maxRow] + col))
+//         {
+//             maxRow = i;
+//         }
+//     }
+//     if (maxRow != row)
+//     {
+//         double temp = matrix.data[row];
+//         matrix.data[row] = matrix.data[maxRow];
+//         matrix.data[maxRow] = temp;
+//     }
+// }
 
 // Matrix2 __M2_rref(Matrix2 matrix) {}
 
